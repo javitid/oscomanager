@@ -25,6 +25,9 @@
         <activity android:name="com.komponentes.oscomanager.ListaPedidos" 
             android:label="@string/lista_pedidos">
         </activity>
+        <activity android:name="com.komponentes.oscomanager.Configurar" 
+            android:label="@string/configurar">
+        </activity>
     </application>
 
 </manifest>

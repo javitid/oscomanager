@@ -39,6 +39,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				listaPedidos();
 				break;
 			case R.id.button2:
+				configurar();
 				break;
 			case R.id.button3:
 				break;
@@ -53,4 +54,9 @@ public class MainActivity extends Activity implements OnClickListener{
     	startActivity(h);
     }
 
+	public void configurar(){
+    	Intent i = new Intent(this, Configurar.class);
+    	startActivity(i);
+    }
+    
 }

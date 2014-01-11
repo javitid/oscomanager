@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:key="preferencias_principal" >
+  <EditTextPreference
+    android:key="servidor"
+    android:title="URL del servidor"
+    android:inputType="text"
+    android:summary="URL del endpoint del servicio de la tienda OsCommerce"
+    android:defaultValue='https://komponentes.com/android_app/access_abc.php?action=get_orders' />
+  <EditTextPreference
+    android:key="usuario"
+    android:inputType="text"
+    android:title="Usuario"
+    android:summary="Usuario para acceder al servicio configurado en la web de la tienda OsCommerce"
+    android:defaultValue="user"/>
+  <EditTextPreference
+    android:key="password"
+    android:password="true"
+    android:title="Contraseña"
+    android:summary="Password para acceder al servicio configurado en la web de la tienda OsCommerce"
+    android:defaultValue="pwd"/>
+</PreferenceScreen>
