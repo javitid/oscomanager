@@ -2,6 +2,7 @@ package com.komponentes.oscomanager;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,6 +18,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista_pedidos);
+		
 		
 		// Preferencias
 		preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
@@ -35,7 +37,8 @@ public class ListaPedidos extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button1:
-				getPedidos();
+				OperacionAccesoRed obtenerListaPedidos = new OperacionAccesoRed();
+				obtenerListaPedidos.execute();
 				break;
 			case R.id.button2:
 				finish();
@@ -43,7 +46,25 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		}
 	}
 	
-	
+    
+    private class OperacionAccesoRed extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+        	getPedidos();
+			return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {}
+
+        @Override
+        protected void onPreExecute() {}
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+    }
+    
+    
     public void getPedidos(){
     	RestClient client = new RestClient(URL);
 	    //client.AddParam("param 1 name", "param 1 value");
