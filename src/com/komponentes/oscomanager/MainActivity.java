@@ -1,8 +1,5 @@
 package com.komponentes.oscomanager;
 
-import com.komponentes.oscomanager.R;
-import com.latarce.games.asteroides.Juego;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -39,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button1:
-				listarPedidos();
+				listaPedidos();
 				break;
 			case R.id.button2:
 				break;
@@ -51,8 +48,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 	}
 	
-    public void listarPedidos(){
-    	Intent h = new Intent(this, ListarPedidos.class);
+    public void listaPedidos(){
+    	Intent h = new Intent(this, ListaPedidos.class);
     	startActivity(h);
     }
 
