@@ -17,6 +17,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		View button1 = findViewById(R.id.button1);
 		button1.setOnClickListener(this);
 		View button2 = findViewById(R.id.button2);
+		button2.setOnClickListener(this);
 	}
 	
 	@Override

@@ -12,4 +12,6 @@
     <string name="main_exit">Salir</string>
     
     <string name="lista_pedidos">Pedidos</string>
+    <string name="lista_reload">Recargar</string>
+    <string name="lista_volver">Volver</string>
 </resources>
