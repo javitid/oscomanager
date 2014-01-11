@@ -129,7 +129,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		    	for (int i = 0; i < jsonArray.length(); i++) {
 			        JSONObject jsonObject = jsonArray.getJSONObject(i);
 			        fechas.add(jsonObject.getString("date_purchased"));
-			        totales.add(jsonObject.getJSONObject("order_products").getString("final_price"));
+			        totales.add(jsonObject.getJSONObject("order_products").getString("products_name"));
 		    	}
 			} catch (JSONException e) {
 				e.printStackTrace();
