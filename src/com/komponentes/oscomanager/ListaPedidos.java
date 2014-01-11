@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,7 +70,10 @@ public class ListaPedidos extends Activity implements OnClickListener{
     	RestClient client = new RestClient(URL);
 	    //client.AddParam("param 1 name", "param 1 value");
 	    //client.AddHeader("header 1 name", "header 1 value");
-	     
+    	String authentication = USER + ":" + PWD;
+    	String encoding = Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+    	client.AddHeader("Authorization", "Basic " + encoding);
+	    
 	    try {
 	        client.Execute(RestClient.RequestMethod.GET);
 	    } catch (Exception e) {
