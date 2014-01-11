@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -24,7 +25,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 
 	private SharedPreferences preferences;
 	private String URL, USER, PWD;
-	private String TESTING = "{\"pedidos\":[{\"orders_id\":\"1\",\"customers_id\":\"2\",\"customers_name\":\"miguel reyes\",\"customers_company\":\"\",\"customers_street_address\":" +
+	/*private String TESTING = "{\"pedidos\":[{\"orders_id\":\"1\",\"customers_id\":\"2\",\"customers_name\":\"miguel reyes\",\"customers_company\":\"\",\"customers_street_address\":" +
 			"\"c/ hernan ruiz, 51\",\"customers_suburb\":\"\",\"customers_city\":null,\"customers_postcode\":\"41530\",\"customers_state\":\"Sevilla\",\"customers_country\"" +
 			":\"Spain\",\"customers_telephone\":\"652820639\",\"customers_email_address\":\"miguel.reyes@wanadoo.es\",\"customers_address_format_id\":\"3\",\"delivery_name\"" +
 			":\"miguel reyes\",\"delivery_company\":\"\",\"delivery_street_address\":\"c/ hernan ruiz, 51\",\"delivery_suburb\":\"\",\"delivery_city\"" +
@@ -33,10 +34,12 @@ public class ListaPedidos extends Activity implements OnClickListener{
 			"\"billing_postcode\":\"41530\",\"billing_state\":\"Sevilla\",\"billing_country\":\"Spain\",\"billing_address_format_id\":\"3\",\"payment_method\":\"PayPal " +
 			"Express\",\"cc_type\":\"\",\"cc_owner\":\"\",\"cc_number\":\"\",\"cc_expires\":\"\",\"last_modified\":\"2013-10-02 17:41:16\",\"date_purchased\":\"2013-09-23 " +
 			"18:03:45\",\"orders_status\":\"4\",\"orders_date_finished\":null,\"currency\":\"EUR\",\"currency_value\":\"1.000000\",\"order_products\":{\"orders_products_id\":\"1\",\"orders_id\":\"1\",\"products_id\":\"33\",\"products_model\":\"\",\"products_name\":\"Sodimm sdram pc133 512mb\",\"products_price\":\"20.0000\",\"final_price\":\"20.0000\",\"products_tax\":\"0.0000\",\"products_quantity\":\"1\"}}]}";
+	*/
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.lista_pedidos);
 		
 		// Preferencias

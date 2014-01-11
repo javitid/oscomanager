@@ -30,6 +30,10 @@
         <activity android:name="com.komponentes.oscomanager.Configurar" 
             android:label="@string/configurar">
         </activity>
+        <activity android:name="com.komponentes.oscomanager.About" 
+            android:label="@string/about_title"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
     </application>
 
 </manifest>

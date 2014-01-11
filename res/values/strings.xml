@@ -16,4 +16,7 @@
     <string name="lista_volver">Volver</string>
     
     <string name="configurar">Configurar</string>
+    
+    <string name="about_title">OsCommerce Manager</string>
+	<string name="about_text">\nVersión RC_0.1\nDesarrollado por Javier García\njavi@komponentes.com\nwww.komponentes.com</string>
 </resources>
