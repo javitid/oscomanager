@@ -22,9 +22,9 @@ import android.widget.SimpleAdapter;
 
 public class ListaPedidos extends Activity implements OnClickListener{
 
-	SharedPreferences preferences;
-	String URL, USER, PWD;
-	String TESTING = "{\"pedidos\":[{\"orders_id\":\"1\",\"customers_id\":\"2\",\"customers_name\":\"miguel reyes\",\"customers_company\":\"\",\"customers_street_address\":" +
+	private SharedPreferences preferences;
+	private String URL, USER, PWD;
+	private String TESTING = "{\"pedidos\":[{\"orders_id\":\"1\",\"customers_id\":\"2\",\"customers_name\":\"miguel reyes\",\"customers_company\":\"\",\"customers_street_address\":" +
 			"\"c/ hernan ruiz, 51\",\"customers_suburb\":\"\",\"customers_city\":null,\"customers_postcode\":\"41530\",\"customers_state\":\"Sevilla\",\"customers_country\"" +
 			":\"Spain\",\"customers_telephone\":\"652820639\",\"customers_email_address\":\"miguel.reyes@wanadoo.es\",\"customers_address_format_id\":\"3\",\"delivery_name\"" +
 			":\"miguel reyes\",\"delivery_company\":\"\",\"delivery_street_address\":\"c/ hernan ruiz, 51\",\"delivery_suburb\":\"\",\"delivery_city\"" +
@@ -51,7 +51,9 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		View button2 = findViewById(R.id.button2);
 		button2.setOnClickListener(this);
 		
-		pintaLista(TESTING);
+		// Obtener lista de pedidos y pintar lista
+		OperacionAccesoRed obtenerListaPedidos = new OperacionAccesoRed();
+		obtenerListaPedidos.execute();
 	}
 	
 	@Override
@@ -69,14 +71,19 @@ public class ListaPedidos extends Activity implements OnClickListener{
 	
     
     private class OperacionAccesoRed extends AsyncTask<String, Void, String> {
+    	
+    	private String listaPedidos;
+    	
         @Override
         protected String doInBackground(String... params) {
-        	getPedidos();
+        	listaPedidos = getPedidos();
 			return null;
         }
 
         @Override
-        protected void onPostExecute(String result) {}
+        protected void onPostExecute(String result) {
+        	pintaLista(listaPedidos);
+        }
 
         @Override
         protected void onPreExecute() {}
@@ -86,7 +93,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
     }
     
     
-    public void getPedidos(){
+    public String getPedidos(){
     	RestClient client = new RestClient(URL);
 	    //client.AddParam("param 1 name", "param 1 value");
 	    //client.AddHeader("header 1 name", "header 1 value");
@@ -104,6 +111,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 	    if (response != null){
 	    	Log.i("REST service response: ", response);
 	    }
+	    return response;
     }
     
     public void pintaLista(String response){
