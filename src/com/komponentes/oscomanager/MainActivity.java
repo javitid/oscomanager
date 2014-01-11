@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				configurar();
 				break;
 			case R.id.button3:
+				about();
 				break;
 			case R.id.button4:
 				finish();
@@ -59,4 +60,8 @@ public class MainActivity extends Activity implements OnClickListener{
     	startActivity(i);
     }
     
+    public void about(){
+    	Intent j = new Intent(this, About.class);
+    	startActivity(j);
+    }
 }
