@@ -8,17 +8,60 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchLayout"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="30dp" >
-    </ListView>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/botones"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lista_pedidos"
+            android:textSize="26sp" />
+
+        <RelativeLayout
+            android:id="@+id/busqueda"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" >
+
+            <EditText
+                android:id="@+id/textoBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_busqueda"
+                android:ems="10"
+                android:hint="@string/lista_filtrar"
+                android:paddingLeft="10dp" >
+
+            </EditText>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/lista_filtrar"
+                android:src="@android:drawable/ic_menu_search" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+        </ListView>
+
+    </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/botones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -40,14 +83,5 @@
             android:layout_height="wrap_content"
             android:text="@string/lista_volver" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/lista_pedidos"
-        android:textSize="26sp" />
 
 </RelativeLayout>

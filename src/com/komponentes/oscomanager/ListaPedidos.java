@@ -13,11 +13,14 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -47,6 +50,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
         URL = preferences.getString("servidor", "");
         USER = preferences.getString("user", "");
         PWD = preferences.getString("password", "");
+
 		
 		// Set up click listeners for all the buttons
 		View button1 = findViewById(R.id.button1);
@@ -155,7 +159,27 @@ public class ListaPedidos extends Activity implements OnClickListener{
 			pedidos.add(map);
 		}
 
-		final SimpleAdapter adapter = new SimpleAdapter(this, pedidos, R.layout.simple_list_2lines, from, to);        
+		final SimpleAdapter adapter = new SimpleAdapter(this, pedidos, R.layout.simple_list_2lines, from, to);    
 		listView.setAdapter(adapter);
+		
+		
+        // Texto de busqueda
+     	final EditText textoBusqueda = (EditText) findViewById(R.id.textoBusqueda);
+     	
+		// Set up search
+		TextWatcher filterTextWatcher = new TextWatcher(){
+			@Override
+			public void afterTextChanged(Editable s) {
+			}
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,	int after) {
+			}
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				adapter.getFilter().filter(s); //Filter from my adapter
+		        adapter.notifyDataSetChanged(); //Update my view
+			}
+		};
+		textoBusqueda.addTextChangedListener(filterTextWatcher);
     }
 }
