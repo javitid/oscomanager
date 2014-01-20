@@ -20,4 +20,6 @@
     
     <string name="about_title">OsCommerce Manager</string>
 	<string name="about_text">\nVersión RC_0.1\nDesarrollado por Javier García\njavi@komponentes.com\nwww.komponentes.com</string>
+	
+	<string name="lista_pedidos_detalle">Detalles del pedido</string>
 </resources>

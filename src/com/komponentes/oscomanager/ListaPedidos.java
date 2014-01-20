@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,9 +21,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class ListaPedidos extends Activity implements OnClickListener{
 
@@ -133,7 +137,8 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		List<String> fechas = new ArrayList<String>();
 		List<String> totales = new ArrayList<String>();
 		List<HashMap<String, String>> pedidos = new ArrayList<HashMap<String, String>>();
-
+		final List<String> pedidos_array = new ArrayList<String>();
+		
 		
 	    // Check if the connection fails
 	    if (response != null){
@@ -145,6 +150,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 			        JSONObject jsonObject = jsonArray.getJSONObject(i);
 			        fechas.add(jsonObject.getString("date_purchased"));
 			        totales.add(jsonObject.getJSONObject("order_products").getString("products_name"));
+			        pedidos_array.add(jsonObject.toString());
 		    	}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -162,10 +168,19 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		final SimpleAdapter adapter = new SimpleAdapter(this, pedidos, R.layout.simple_list_2lines, from, to);    
 		listView.setAdapter(adapter);
 		
+		// Click listener
+		listView.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            	Intent i = new Intent(getBaseContext(), ListaPedidosDetalle.class);
+            	i.putExtra("fecha", ((TextView)arg1.findViewById(R.id.text1)).getText().toString());
+            	i.putExtra("datos", pedidos_array.get(arg2));
+                startActivity(i);	
+			}
+        });
 		
         // Texto de busqueda
      	final EditText textoBusqueda = (EditText) findViewById(R.id.textoBusqueda);
-     	
 		// Set up search
 		TextWatcher filterTextWatcher = new TextWatcher(){
 			@Override
