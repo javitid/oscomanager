@@ -57,7 +57,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 
 		
 		// Set up click listeners for all the buttons
-		View button1 = findViewById(R.id.button1);
+		View button1 = findViewById(R.id.buttonEstado);
 		button1.setOnClickListener(this);
 		View button2 = findViewById(R.id.button2);
 		button2.setOnClickListener(this);
@@ -70,7 +70,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.button1:
+			case R.id.buttonEstado:
 				OperacionAccesoRed obtenerListaPedidos = new OperacionAccesoRed();
 				obtenerListaPedidos.execute();
 				break;

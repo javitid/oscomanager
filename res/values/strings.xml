@@ -21,5 +21,8 @@
     <string name="about_title">OsCommerce Manager</string>
 	<string name="about_text">\nVersión RC_0.1\nDesarrollado por Javier García\njavi@komponentes.com\nwww.komponentes.com</string>
 	
-	<string name="lista_pedidos_detalle">Detalles del pedido</string>
+	<string name="detalle_numero_pedido">Pedido número:</string>
+	<string name="detalle_cliente">Cliente</string>
+	<string name="detalle_direccion_envio">Dirección de envío</string>
+	<string name="detalle_lista_pedidos">Detalles del pedido</string>
 </resources>
