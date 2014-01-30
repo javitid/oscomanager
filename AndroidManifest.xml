@@ -37,6 +37,10 @@
         <activity android:name="com.komponentes.oscomanager.ListaPedidosDetalle" 
             android:label="@string/detalle_lista_pedidos">
         </activity>
+        <activity android:name="com.komponentes.oscomanager.Estados" 
+            android:label="@string/estados_title"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
     </application>
 
 </manifest>

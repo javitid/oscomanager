@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 public class ListaPedidosDetalle extends Activity implements OnClickListener{
 	
 	final String RETURN = "\n";
+	int estado = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +37,6 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 		String fecha = getIntent().getStringExtra("fecha");
 		String datos = getIntent().getStringExtra("datos");
 		String estadoStr = "";
-		int estadoColor = 0;
 		String detallesPedidoStr = fecha + RETURN;
 		String detallesClienteStr = "";
 		String detallesEnvioStr = "";
@@ -51,26 +52,22 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 		   	
 		   	// STATUS
 	    	if (jsonOrder.has("orders_status")){
-	    		switch (jsonOrder.getInt("orders_status")){
+	    		estado = jsonOrder.getInt("orders_status");
+	    		switch (estado){
 	    			case 1:
-	    				estadoStr = "Pendiente";
-	    				estadoColor = 0xFF0080FF;
+	    				estadoStr = getString(R.string.estado_1);
 	    				break;
 	    			case 2:
-	    				estadoStr = "Procesando";
-	    				estadoColor = 0xFFFE9A2E;
+	    				estadoStr = getString(R.string.estado_2);
 	    				break;
 	    			case 3:
-	    				estadoStr = "Enviado";
-	    				estadoColor = 0xFFFF0000;
+	    				estadoStr = getString(R.string.estado_3);
 	    				break;
 	    			case 4:
-	    				estadoStr = "Paypal";
-	    				estadoColor = 0xFF3ADF00;
+	    				estadoStr = getString(R.string.estado_4);
 	    				break;
 	    		}
 	    		buttonEstado.setText(estadoStr);
-	    		buttonEstado.setBackgroundColor(estadoColor);
 	    	}
 	    	
 	    	// DATA OF THE CLIENT
@@ -139,9 +136,13 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 				finish();
 				break;
 			case R.id.buttonEstado:
+            	Intent i = new Intent(getBaseContext(), Estados.class);
+            	i.putExtra("estado", estado);
+                startActivity(i);	
 				break;
 		}
 		
 	}
+
 
 }

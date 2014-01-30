@@ -25,4 +25,10 @@
 	<string name="detalle_cliente">Cliente</string>
 	<string name="detalle_direccion_envio">Dirección de envío</string>
 	<string name="detalle_lista_pedidos">Detalles del pedido</string>
+	
+	<string name="estados_title">Detalles del pedido</string>
+	<string name="estado_1">Pendiente</string>
+	<string name="estado_2">Procesando</string>
+	<string name="estado_3">Enviado</string>
+	<string name="estado_4">Paypal</string>
 </resources>
