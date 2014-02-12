@@ -14,8 +14,11 @@ import android.widget.TextView;
 
 public class ListaPedidosDetalle extends Activity implements OnClickListener{
 	
-	final String RETURN = "\n";
-	int estado = 0;
+	private Button buttonEstado;
+	private final String RETURN = "\n";
+	private int estado = 0;
+	private String orders_id;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +28,7 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 		// Set up click listeners for all the buttons
 		View buttonVolver = findViewById(R.id.buttonVolver);
 		buttonVolver.setOnClickListener(this);
-		Button buttonEstado = (Button)findViewById(R.id.buttonEstado);
+		buttonEstado = (Button)findViewById(R.id.buttonEstado);
 		buttonEstado.setOnClickListener(this);
 		
 		TextView numeroPedido = (TextView) findViewById(R.id.numeroPedido);
@@ -36,7 +39,6 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 		// Received parameters
 		String fecha = getIntent().getStringExtra("fecha");
 		String datos = getIntent().getStringExtra("datos");
-		String estadoStr = "";
 		String detallesPedidoStr = fecha + RETURN;
 		String detallesClienteStr = "";
 		String detallesEnvioStr = "";
@@ -47,27 +49,14 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 			// ID
 			jsonOrder = new JSONObject(datos);
 		   	if (jsonOrder.has("orders_id")){
-	    		numeroPedido.setText(jsonOrder.getString("orders_id"));
+		   		orders_id = jsonOrder.getString("orders_id");
+	    		numeroPedido.setText(orders_id);
 	    	}
 		   	
 		   	// STATUS
 	    	if (jsonOrder.has("orders_status")){
 	    		estado = jsonOrder.getInt("orders_status");
-	    		switch (estado){
-	    			case 1:
-	    				estadoStr = getString(R.string.estado_1);
-	    				break;
-	    			case 2:
-	    				estadoStr = getString(R.string.estado_2);
-	    				break;
-	    			case 3:
-	    				estadoStr = getString(R.string.estado_3);
-	    				break;
-	    			case 4:
-	    				estadoStr = getString(R.string.estado_4);
-	    				break;
-	    		}
-	    		buttonEstado.setText(estadoStr);
+	    		buttonEstado.setText(estadoToString(estado));
 	    	}
 	    	
 	    	// DATA OF THE CLIENT
@@ -138,11 +127,45 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 			case R.id.buttonEstado:
             	Intent i = new Intent(getBaseContext(), Estados.class);
             	i.putExtra("estado", estado);
-                startActivity(i);	
+            	i.putExtra("orders_id", orders_id);
+                startActivityForResult(i, 1);	
 				break;
 		}
 		
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+			if(resultCode == RESULT_OK){      
+				int result = data.getIntExtra("result", 0);
+				buttonEstado.setText(estadoToString(result));
+				estado = result;
+			}
+			if (resultCode == RESULT_CANCELED) {    
+				//Write your code if there's no result
+			}
+		}
+	}
 
+	private String estadoToString(int estado){
+		String estadoStr;
+		switch (estado){
+			case 1:
+				estadoStr = getString(R.string.estado_1);
+				break;
+			case 2:
+				estadoStr = getString(R.string.estado_2);
+				break;
+			case 3:
+				estadoStr = getString(R.string.estado_3);
+				break;
+			case 4:
+				estadoStr = getString(R.string.estado_4);
+				break;
+			default:
+				estadoStr = "ERROR";
+		}
+		return estadoStr;
+	}
 
 }

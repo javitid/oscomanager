@@ -7,7 +7,7 @@
     android:title="URL del servidor"
     android:inputType="text"
     android:summary="URL del endpoint del servicio de la tienda OsCommerce"
-    android:defaultValue='https://komponentes.com/android_app/access_abc.php?action=get_orders' />
+    android:defaultValue='http://komponentes.com/android_app/access_abc.php' />
   <EditTextPreference
     android:key="usuario"
     android:inputType="text"

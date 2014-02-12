@@ -35,7 +35,8 @@
             android:theme="@android:style/Theme.Dialog">
         </activity>
         <activity android:name="com.komponentes.oscomanager.ListaPedidosDetalle" 
-            android:label="@string/detalle_lista_pedidos">
+            android:label="@string/detalle_lista_pedidos"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name="com.komponentes.oscomanager.Estados" 
             android:label="@string/estados_title"

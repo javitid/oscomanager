@@ -51,7 +51,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		
 		// Preferencias
 		preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        URL = preferences.getString("servidor", "");
+        URL = preferences.getString("servidor", "") + "?action=get_orders&start=0&entries=100";
         USER = preferences.getString("user", "");
         PWD = preferences.getString("password", "");
 
