@@ -1,5 +1,6 @@
 package com.komponentes.oscomanager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -101,11 +102,21 @@ public class ListaPedidosDetalle extends Activity implements OnClickListener{
 	    	
 	    	// DATA OF THE ORDER
 	    	if (jsonOrder.has("order_products")){
-	    		JSONObject jsonProductsDetails = new JSONObject(jsonOrder.getString("order_products"));
-	    		detallesPedidoStr += jsonProductsDetails.getString("products_name") + RETURN;
-	    		detallesPedidoStr += "Precio: " + jsonProductsDetails.getString("products_price") + RETURN;
-	    		detallesPedidoStr += "IVA: " + jsonProductsDetails.getString("products_tax") + RETURN;
-	    		detallesPedidoStr += "Total: " + jsonProductsDetails.getString("final_price") + " " + jsonOrder.getString("currency") + RETURN;
+	    		JSONArray jsonArrayOrders = jsonOrder.getJSONArray("order_products");
+	    		JSONObject jsonProductsDetails = null;
+	    		int precioBruto = 0;
+	    		int precioTotal = 0;
+	    		Double taxes = 0.00;
+		        for (int j = 0; j < jsonArrayOrders.length(); j++) {
+		        	jsonProductsDetails = jsonArrayOrders.getJSONObject(j);
+		        	detallesPedidoStr += jsonProductsDetails.getString("products_quantity") + " x " + jsonProductsDetails.getString("products_name") + RETURN;
+		        	precioBruto += Double.parseDouble(jsonProductsDetails.getString("final_price"));
+		        	precioTotal += Double.parseDouble(jsonProductsDetails.getString("final_price"));
+		        	taxes = Double.parseDouble(jsonProductsDetails.getString("products_tax"));
+		        }
+	    		detallesPedidoStr += "Precio: " + String.valueOf(precioBruto) + RETURN;
+	    		detallesPedidoStr += "IVA: " + String.valueOf(taxes) + RETURN;
+	    		detallesPedidoStr += "Total: " + String.valueOf(precioTotal) + " " + jsonOrder.getString("currency") + RETURN;
 	    	}
 		   	
 		}catch (JSONException e) {

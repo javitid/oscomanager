@@ -149,7 +149,8 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		    	for (int i = 0; i < jsonArray.length(); i++) {
 			        JSONObject jsonObject = jsonArray.getJSONObject(i);
 			        fechas.add(jsonObject.getString("date_purchased"));
-			        totales.add(jsonObject.getJSONObject("order_products").getString("products_name"));
+			        JSONArray jsonArrayOrders = jsonObject.getJSONArray("order_products");
+			        totales.add(jsonArrayOrders.toString());
 			        pedidos_array.add(jsonObject.toString());
 		    	}
 			} catch (JSONException e) {
@@ -161,7 +162,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		for (int i=0; i<fechas.size(); i++) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("fecha", fechas.get(i));
-			map.put("total", totales.get(i));
+			//map.put("total", totales.get(i));
 			pedidos.add(map);
 		}
 
@@ -175,7 +176,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
             	Intent i = new Intent(getBaseContext(), ListaPedidosDetalle.class);
             	i.putExtra("fecha", ((TextView)arg1.findViewById(R.id.text1)).getText().toString());
             	i.putExtra("datos", pedidos_array.get(arg2));
-                startActivity(i);	
+                startActivity(i);
 			}
         });
 		
