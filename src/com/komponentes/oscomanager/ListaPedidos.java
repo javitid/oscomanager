@@ -130,12 +130,12 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		ListView listView = (ListView) findViewById(R.id.listView);
 		
         // Create the grid item mapping
-		String[] from = new String[] {"fecha", "total"};
+		String[] from = new String[] {"fecha", "estado"};
 		int[] to = new int[] {R.id.text1, R.id.text2};
 		
 		//HashMap<String, String> direcciones = new HashMap<String, String>();
 		List<String> fechas = new ArrayList<String>();
-		List<String> totales = new ArrayList<String>();
+		List<String> estado = new ArrayList<String>();
 		List<HashMap<String, String>> pedidos = new ArrayList<HashMap<String, String>>();
 		final List<String> pedidos_array = new ArrayList<String>();
 		
@@ -150,7 +150,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 			        JSONObject jsonObject = jsonArray.getJSONObject(i);
 			        fechas.add(jsonObject.getString("date_purchased"));
 			        JSONArray jsonArrayOrders = jsonObject.getJSONArray("order_products");
-			        totales.add(jsonArrayOrders.toString());
+			        estado.add(estadoToString(Integer.parseInt(jsonObject.getString("orders_status"))));
 			        pedidos_array.add(jsonObject.toString());
 		    	}
 			} catch (JSONException e) {
@@ -162,7 +162,7 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		for (int i=0; i<fechas.size(); i++) {
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("fecha", fechas.get(i));
-			//map.put("total", totales.get(i));
+			map.put("estado", estado.get(i));
 			pedidos.add(map);
 		}
 
@@ -198,4 +198,25 @@ public class ListaPedidos extends Activity implements OnClickListener{
 		};
 		textoBusqueda.addTextChangedListener(filterTextWatcher);
     }
+    
+	private String estadoToString(int estado){
+		String estadoStr;
+		switch (estado){
+			case 1:
+				estadoStr = getString(R.string.estado_1);
+				break;
+			case 2:
+				estadoStr = getString(R.string.estado_2);
+				break;
+			case 3:
+				estadoStr = getString(R.string.estado_3);
+				break;
+			case 4:
+				estadoStr = getString(R.string.estado_4);
+				break;
+			default:
+				estadoStr = "ERROR";
+		}
+		return estadoStr;
+	}
 }
