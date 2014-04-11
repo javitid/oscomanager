@@ -15,8 +15,10 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		
 		// Set up click listeners for all the buttons
-		View button1 = findViewById(R.id.buttonEstado);
-		button1.setOnClickListener(this);
+		View buttonEstado = findViewById(R.id.buttonEstado);
+		buttonEstado.setOnClickListener(this);
+		View buttonArticulos = findViewById(R.id.buttonArticulos);
+		buttonArticulos.setOnClickListener(this);
 		View button2 = findViewById(R.id.button2);
 		button2.setOnClickListener(this);
 		View button3 = findViewById(R.id.button3);
@@ -38,6 +40,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.buttonEstado:
 				listaPedidos();
 				break;
+			case R.id.buttonArticulos:
+				listaArticulos();
+				break;
 			case R.id.button2:
 				configurar();
 				break;
@@ -55,6 +60,11 @@ public class MainActivity extends Activity implements OnClickListener{
     	startActivity(h);
     }
 
+    public void listaArticulos(){
+    	Intent k = new Intent(this, ListaArticulos.class);
+    	startActivity(k);
+    }
+    
 	public void configurar(){
     	Intent i = new Intent(this, Configurar.class);
     	startActivity(i);

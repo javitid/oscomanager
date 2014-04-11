@@ -7,11 +7,13 @@
 
     <string name="main_title">OsCo Manager</string>
     <string name="main_orders">Pedidos</string>
+    <string name="main_articles">Articulos</string>
     <string name="main_configure">Configurar</string>
     <string name="main_about">Acerca de</string>
     <string name="main_exit">Salir</string>
     
     <string name="lista_pedidos">Pedidos</string>
+    <string name="lista_articulos">Articulos</string>
     <string name="lista_filtrar">Filtrar ventas</string>
     <string name="lista_reload">Recargar</string>
     <string name="lista_volver">Volver</string>
