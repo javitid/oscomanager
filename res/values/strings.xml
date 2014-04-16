@@ -17,6 +17,7 @@
     <string name="lista_filtrar">Filtrar ventas</string>
     <string name="lista_reload">Recargar</string>
     <string name="lista_volver">Volver</string>
+    <string name="lista_compartir">Compartir</string>
     
     <string name="configurar">Configurar</string>
     
@@ -39,4 +40,6 @@
 	<string name="estado_2">Procesando</string>
 	<string name="estado_3">Enviado</string>
 	<string name="estado_4">Paypal</string>
+	
+	<string name="share_chooser">Articulo</string>
 </resources>

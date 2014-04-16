@@ -5,10 +5,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -23,6 +25,8 @@ public class ListaArticulosDetalle extends Activity implements OnClickListener{
 	private String URL;
 	private String image;
 	private String product_url;
+	private String detallesArticuloStr = "";
+	private String html = "";
 	private SharedPreferences preferences;
 	
 	@Override
@@ -38,6 +42,8 @@ public class ListaArticulosDetalle extends Activity implements OnClickListener{
 		// Set up click listeners for all the buttons
 		View buttonVolver = findViewById(R.id.buttonVolver);
 		buttonVolver.setOnClickListener(this);
+		View buttonCompartir = findViewById(R.id.buttonCompartir);
+		buttonCompartir.setOnClickListener(this);
 		
 		TextView numeroArticulo = (TextView) findViewById(R.id.numeroArticulo);
 		TextView stockArticulo = (TextView) findViewById(R.id.stock);
@@ -46,8 +52,6 @@ public class ListaArticulosDetalle extends Activity implements OnClickListener{
 		
 		// Received parameters
 		String datos = getIntent().getStringExtra("datos");
-		String detallesArticuloStr = "";
-		String html = "";
 
 		// Draw the json data in the layout
 		JSONObject jsonOrder = null;
@@ -108,6 +112,21 @@ public class ListaArticulosDetalle extends Activity implements OnClickListener{
 		switch (v.getId()) {
 			case R.id.buttonVolver:
 				finish();
+				break;
+			case R.id.buttonCompartir:
+				Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+				//set the type  
+				shareIntent.setType("text/plain");  
+				//add a subject   
+				String shareMessage = detallesArticuloStr 
+						+ "\n\n" 
+						+ Html.fromHtml(html).toString()
+						+ "\nImagen: " + image
+						+ "\nVer en web:" + product_url;  
+				//add the message  
+				shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);  
+				//start the chooser for sharing  
+				startActivity(Intent.createChooser(shareIntent, getResources().getString(R.string.share_chooser)));  
 				break;
 		}
 		
