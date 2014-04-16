@@ -7,7 +7,13 @@
     android:title="URL del servidor"
     android:inputType="text"
     android:summary="URL del endpoint del servicio de la tienda OsCommerce"
-    android:defaultValue='http://komponentes.com/android_app/access_abc.php' />
+    android:defaultValue='http://komponentes.com' />
+  <EditTextPreference
+    android:key="bridge"
+    android:title="Ruta al fichero puente"
+    android:inputType="text"
+    android:summary="Ruta relativa al fichero puente de la tienda OsCommerce"
+    android:defaultValue='android_app/access_abc.php' />
   <EditTextPreference
     android:key="usuario"
     android:inputType="text"

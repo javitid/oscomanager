@@ -24,7 +24,7 @@ public class Estados extends Activity implements OnCheckedChangeListener{
 		
 		// Preferencias
 		preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        URL = preferences.getString("servidor", "") + "?action=change_order_status";
+		URL = preferences.getString("servidor", "") + "/" + preferences.getString("bridge", "") + "?action=change_order_status";
         USER = preferences.getString("user", "");
         PWD = preferences.getString("password", "");
         

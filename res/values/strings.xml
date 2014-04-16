@@ -28,6 +28,12 @@
 	<string name="detalle_direccion_envio">Dirección de envío</string>
 	<string name="detalle_lista_pedidos">Detalles del pedido</string>
 	
+	<string name="detalle_numero_articulo">Artículo número:</string>
+	<string name="detalle_lista_articulos">Detalles del artículo</string>
+	<string name="detalle_imagen_articulo">Imagen del artículo</string>
+	<string name="detalle_cantidad">Stock:</string>
+	<string name="detalle_descripcion_articulo">Descripción</string>
+	
 	<string name="estados_title">Detalles del pedido</string>
 	<string name="estado_1">Pendiente</string>
 	<string name="estado_2">Procesando</string>

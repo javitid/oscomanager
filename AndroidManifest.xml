@@ -41,6 +41,10 @@
             android:label="@string/detalle_lista_pedidos"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name="com.komponentes.oscomanager.ListaArticulosDetalle" 
+            android:label="@string/detalle_lista_articulos"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name="com.komponentes.oscomanager.Estados" 
             android:label="@string/estados_title"
             android:theme="@android:style/Theme.Dialog">

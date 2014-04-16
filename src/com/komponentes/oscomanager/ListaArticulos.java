@@ -52,7 +52,7 @@ public class ListaArticulos extends Activity implements OnClickListener{
 		
 		// Preferencias
 		preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        URL = preferences.getString("servidor", "") + "?action=get_products&start=0&entries=100";
+        URL = preferences.getString("servidor", "") + "/" + preferences.getString("bridge", "") + "?action=get_products&start=0&entries=100";
         USER = preferences.getString("user", "");
         PWD = preferences.getString("password", "");
 
@@ -174,10 +174,10 @@ public class ListaArticulos extends Activity implements OnClickListener{
 		listView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-//            	Intent i = new Intent(getBaseContext(), ListaPedidosDetalle.class);
-//            	i.putExtra("fecha", ((TextView)arg1.findViewById(R.id.text1)).getText().toString());
-//            	i.putExtra("datos", pedidos_array.get(arg2));
-//                startActivity(i);
+            	Intent i = new Intent(getBaseContext(), ListaArticulosDetalle.class);
+            	i.putExtra("fecha", ((TextView)arg1.findViewById(R.id.text1)).getText().toString());
+            	i.putExtra("datos", pedidos_array.get(arg2));
+                startActivity(i);
 			}
         });
 		
